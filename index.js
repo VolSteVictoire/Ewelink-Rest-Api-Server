@@ -1,6 +1,5 @@
 const express = require('express');
 const ewelink = require('ewelink-api');
-require('dotenv').config(); // Chargement des variables d'environnement
 
 const app = express();
 const port = process.env.PORT || 3000;
