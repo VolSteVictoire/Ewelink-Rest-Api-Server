@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "escape": "^0.0.1",
+    "ewelink-api": "^3.1.1",
+    "ewelink-api-next": "^1.0.3",
+    "express": "^4.18.2"
+  },
+  "name": "ewelink-rest-api-server",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "setupw": "powershell '../setup/windows.ps1' && npm install",
+    "serve": "nodemon ./server.js",
+    "kill": "sudo killall node",
+    "killw": "taskkill /f /im node.exe"
+  },
+  "author": "DoganM95",
+  "license": "MIT License",
+  "description": "Server-code ",
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
