@@ -1,5 +1,6 @@
 const express = require('express');
 const ewelink = require('ewelink-api');
+require('dotenv').config(); // Chargement des variables d'environnement
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -7,10 +8,11 @@ const port = process.env.PORT || 3000;
 // Pour lire les données JSON dans les requêtes POST
 app.use(express.json());
 
-// Configuration eWeLink (remplace avec tes infos)
-const email = 'joven@orange.fr';
-const password = 'Aqw12zsx*';
-const region = 'eu'; // ou 'us', selon ton compte
+// Configuration eWeLink (via variables d'environnement)
+const email = process.env.EMAIL;
+const password = process.env.PASSWORD;
+const region = process.env.REGION || 'eu';
+const deviceId = process.env.DEVICE_ID;
 
 let connection;
 
@@ -20,7 +22,7 @@ let connection;
     connection = new ewelink({
       email,
       password,
-      region
+      region,
     });
 
     const auth = await connection.getCredentials();
@@ -31,9 +33,9 @@ let connection;
 })();
 
 // Exemple d’API pour allumer un appareil
-app.get('/on/:deviceid', async (req, res) => {
+app.get('/on', async (req, res) => {
   try {
-    const response = await connection.setDevicePowerState(req.params.deviceid, 'on');
+    const response = await connection.setDevicePowerState(deviceId, 'on');
     res.json(response);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -41,9 +43,9 @@ app.get('/on/:deviceid', async (req, res) => {
 });
 
 // Exemple d’API pour éteindre un appareil
-app.get('/off/:deviceid', async (req, res) => {
+app.get('/off', async (req, res) => {
   try {
-    const response = await connection.setDevicePowerState(req.params.deviceid, 'off');
+    const response = await connection.setDevicePowerState(deviceId, 'off');
     res.json(response);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -51,9 +53,9 @@ app.get('/off/:deviceid', async (req, res) => {
 });
 
 // Vérification de l’état
-app.get('/status/:deviceid', async (req, res) => {
+app.get('/status', async (req, res) => {
   try {
-    const response = await connection.getDevicePowerState(req.params.deviceid);
+    const response = await connection.getDevicePowerState(deviceId);
     res.json(response);
   } catch (err) {
     res.status(500).json({ error: err.message });
