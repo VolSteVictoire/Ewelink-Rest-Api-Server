@@ -5,7 +5,7 @@
     "ewelink-api-next": "^1.0.3",
     "express": "^4.18.2"
   },
-  "name": "ewelink-rest-api-server",
+  "name": "ewelink-VSV",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
