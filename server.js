@@ -38,7 +38,7 @@ const ewelinkConnection = new ewelink({
     region: process.env.EWELINK_REGION,
 });
 const constants = {
-    port: 3000,
+    port: 10000,
     defaultHashingAlgorithm: "sha3-512",
 };
 const hashingAlgorithm = process.env.PASSWORD_HASHING_ALGORITHM == undefined ? constants.defaultHashingAlgorithm : String(process.env.PASSWORD_HASHING_ALGORITHM).toLowerCase();
