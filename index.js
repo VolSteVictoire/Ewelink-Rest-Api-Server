@@ -11,7 +11,7 @@ app.use(express.json());
 const email = process.env.EMAIL;
 const password = process.env.PASSWORD;
 const region = process.env.REGION || 'eu';
-const deviceId = process.env.DEVICE_ID;
+//const deviceId = process.env.DEVICE_ID;
 
 let connection;
 
